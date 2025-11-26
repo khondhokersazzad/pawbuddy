@@ -7,7 +7,7 @@ const NewsLetter = () => {
         <div className="rounded-2xl overflow-hidden shadow-2xl">
 
           {/* Top colorful banner */}
-          <div className="bg-gradient-to-r from-purple-500 via-pink-400 to-yellow-400 px-6 py-8">
+          <div className="bg-linear-to-r from-purple-500 via-pink-400 to-yellow-400 px-6 py-8">
             <h2 className="text-3xl md:text-4xl font-extrabold text-white text-center">
               Join the ToyTopia Newsletter 🎉
             </h2>
