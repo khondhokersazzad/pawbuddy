@@ -18,7 +18,9 @@ const NavBar = () => {
       <div className="flex justify-center items-center py-5 bg-gradient-to-r from-pink-200 via-yellow-200 to-blue-200">
         <img src={toytopia} alt="" height="250" width="250" />
       </div>
-      <div className="navbar shadow-sm bg-blue-100/80 backdrop-blur-md">
+      <div className="navbar shadow-sm bg-gradient-to-r from-pink-100 via-yellow-100 to-blue-100
+
+">
         <div className="navbar-start">
           <NavLink className="btn btn-ghost text-xl text-blue-500" to="/">
             toyTopia

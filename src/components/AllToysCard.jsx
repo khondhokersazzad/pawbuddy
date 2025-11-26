@@ -11,34 +11,41 @@ const AllToysCard = ({ toy }) => {
     availableQuantity,
     subCategory,
   } = toy;
+
   return (
     <div>
-      <div className="bg-white border rounded-xl shadow hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+      <div className="bg-gradient-to-br from-pink-50 via-yellow-50 to-blue-50 border border-pink-100 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+
+        {/* Toy Image */}
         <img
           src={pictureURL}
           alt={toyName}
-          className="w-full h-48 object-cover"
+          className="w-full h-48 object-cover rounded-t-2xl"
         />
 
         <div className="p-4 space-y-2">
-          <h3 className="text-lg font-semibold text-gray-800">{toyName}</h3>
-          <p className="text-sm text-gray-500">Category: {subCategory}</p>
+
+          <h3 className="text-xl font-bold text-purple-700">{toyName}</h3>
+          <p className="text-sm text-rose-500 font-medium">Category: {subCategory}</p>
 
           <div className="flex justify-between items-center text-sm mt-2">
-            <p className="font-medium text-indigo-600">Price: ${price}</p>
-            <p className="text-yellow-600">⭐ {rating}</p>
+            <p className="font-semibold text-blue-600">
+              Price: <span className="font-bold">${price}</span>
+            </p>
+            <p className="text-yellow-600 font-semibold text-lg">⭐ {rating}</p>
           </div>
 
-          <p className="text-sm text-gray-600">
-            Available: <span className="font-medium">{availableQuantity}</span>
+          <p className="text-sm text-gray-700">
+            Available:{" "}
+            <span className="font-semibold text-green-600">{availableQuantity}</span>
           </p>
 
-          {/* View More button */}
+          {/* Cute kids-themed View More button */}
           <Link
             to={`/toy-details/${toyId}`}
-            className="block text-center mt-3 bg-indigo-600 text-white py-1.5 rounded-lg hover:bg-indigo-700 transition"
+            className="block text-center mt-3 bg-purple-500 text-white py-2 rounded-full shadow-md hover:bg-purple-600 hover:shadow-lg transition-all"
           >
-            View More
+            🎈 View More
           </Link>
         </div>
       </div>

@@ -13,7 +13,9 @@ const PopularToys = () => {
   }, []);
   return (
     <div>
-      <h1 className="chewy text-blue-500 text-2xl font-semibold py-5">Popular Toys || </h1>
+      <h1 className="chewy text-purple-700 text-3xl font-bold text-center py-5 my-5">
+        Popular Toys 🧸
+      </h1>
       <div
         className="grid 
         grid-cols-1        
