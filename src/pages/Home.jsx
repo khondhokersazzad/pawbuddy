@@ -2,6 +2,7 @@ import React from "react";
 import Slider from "../components/Slider";
 import PopularToys from "../components/PopularToys";
 import CategoryToysdemo from "../components/CategoryToysdemo";
+import NewsLetter from "../components/NewsLetter";
 
 const Home = () => {
   return (
@@ -19,6 +20,12 @@ const Home = () => {
       <section className="w-11/12 mx-auto my-3">
         <CategoryToysdemo></CategoryToysdemo>
       </section>
+
+      <section className="w-11/12 mx-auto my-3">
+        <NewsLetter></NewsLetter>
+      </section>
+
+
     </div>
   );
 };
