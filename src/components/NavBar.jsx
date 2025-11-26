@@ -7,7 +7,7 @@ import auth from "../firebase/firebase.config";
 
 const NavBar = () => {
   const { user, setUser } = useContext(AuthContext);
-  
+
   const handleLogout = () => {
     signOut(auth);
     setUser(null);
@@ -15,10 +15,10 @@ const NavBar = () => {
 
   return (
     <div>
-      <div className="flex justify-center items-center py-5  bg-base-100">
+      <div className="flex justify-center items-center py-5 bg-gradient-to-r from-pink-200 via-yellow-200 to-blue-200">
         <img src={toytopia} alt="" height="250" width="250" />
       </div>
-      <div className="navbar bg-base-100 shadow-sm">
+      <div className="navbar shadow-sm bg-blue-100/80 backdrop-blur-md">
         <div className="navbar-start">
           <NavLink className="btn btn-ghost text-xl text-blue-500" to="/">
             toyTopia
@@ -60,7 +60,7 @@ const NavBar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-blue-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
                 <NavLink to="/">Home</NavLink>
@@ -68,7 +68,7 @@ const NavBar = () => {
               <li>
                 <NavLink to="/all-toys">All Toys</NavLink>
               </li>
-              
+
               <li>
                 <NavLink to="/profile">My Profile</NavLink>
               </li>
@@ -79,7 +79,6 @@ const NavBar = () => {
               <div className="avatar" title={user?.displayName}>
                 <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring-2 ring-offset-2">
                   <img src={user?.photoURL} />
-                  
                 </div>
               </div>
 

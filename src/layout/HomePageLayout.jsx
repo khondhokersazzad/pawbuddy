@@ -10,7 +10,9 @@ import { Outlet } from "react-router";
 
 const HomePageLayout = () => {
   return (
-    <div className="bg-base-100 min-h-screen">
+    <div className="bg-gradient-to-br from-blue-100 via-pink-100 to-purple-100
+
+ min-h-screen">
       <header>
         <nav>
           {/* <NavBar></NavBar> */}
