@@ -40,7 +40,7 @@ const Footer = () => {
     </div>
 
     <p className="text-xs text-purple-900/70 mt-6">
-      © {new Date().getFullYear()} FunToy World — Made with joy for kids 💛
+      © {new Date().getFullYear()} toyTopia — Made with joy for kids 💛
     </p>
   </div>
 </footer>

@@ -2,7 +2,7 @@ import { getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/a
 import React, { useContext, useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { GoogleAuthProvider } from "firebase/auth";
 import auth from "../firebase/firebase.config";
@@ -11,8 +11,12 @@ import { AuthContext } from "../provider/AuthProvider";
 
 const Login = () => {
   const [show, setShow] = useState(false);
-  // const[user, setUser] = useState(null);
+  const [userEmail,setUserEmail] = useState('');
   const {setUser,user, handleGoogleSignIn} =useContext(AuthContext);
+
+  const location = useLocation();
+   
+  const navigate = useNavigate();
   
   const handleLogin = (e) => {
     e.preventDefault();
@@ -24,6 +28,8 @@ const Login = () => {
       .then((res) => {
         const user = res.user;
         setUser(user);
+        // navigate(location.state);
+        navigate('/profile');
         toast.success("Sign in successfull");
         
       })
@@ -37,14 +43,21 @@ const Login = () => {
      .then((res) => {
         const user = res.user;
         setUser(user);
+        navigate('/profile');
         toast.success("Sign in successfull");
-        console.log(user);
+        
         
       })
       .catch((error) => {
         toast.error(error.message);
       });
   }
+
+  const handleForget = () =>{
+    navigate(`/auth/forget/${userEmail}`)
+   
+  }
+ 
 
   
 
@@ -65,6 +78,9 @@ const Login = () => {
                   name="email"
                   className="input"
                   placeholder="Email"
+                  onChange={(e) => {
+                    return setUserEmail(e.target.value);
+                  }}
                 />
                 <div className="relative">
                   <label className="label">Password</label>
@@ -83,12 +99,12 @@ const Login = () => {
                   </span>
                 </div>
                 <div>
-                  <a className="link link-hover">Forgot password?</a>
+                  <button onClick={handleForget}  type="button" className="link link-hover ">Forgot password?</button>
                 </div>
                 <button  type="submit" className="btn btn-neutral mt-4">
                   Login
                 </button>
-                {/* <button onClick={handleGoogleSignIn} className="btn bg-white text-black border-[#e5e5e5]"> */}
+                
                 <button type='button' onClick={googleSignIn} className="btn bg-white text-black border-[#e5e5e5]">
                   <svg
                     aria-label="Google logo"

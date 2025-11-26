@@ -6,7 +6,7 @@ import {
 import { toast } from "react-toastify";
 
 import React, { useContext, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
 import { AuthContext } from "../provider/AuthProvider";
@@ -18,6 +18,8 @@ const Register = () => {
   const [show, setShow] = useState(false);
 
   const { registerUserwithPass, user, setUser,handleGoogleSignIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -39,6 +41,7 @@ const Register = () => {
     registerUserwithPass(email, password)
       .then((result) => {
         const user = result.user;
+        
 
         updateProfile(auth.currentUser, {
           displayName: name,
@@ -46,6 +49,7 @@ const Register = () => {
         })
           .then(() => {
             setUser(user);
+            navigate('/');
             console.log(user);
           })
           .catch((error) => {

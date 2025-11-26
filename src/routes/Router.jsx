@@ -9,6 +9,7 @@ import AuthLayout from "../layout/AuthLayout";
 import Profile from "../pages/Profile";
 import PrivateRoute from "./PrivateRoute";
 import Error from "../pages/Error";
+import Forget from "../pages/Forget";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/auth/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/auth/forget/:userEmail",
+        element: <Forget></Forget>,
       },
     ],
   },

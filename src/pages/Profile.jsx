@@ -8,6 +8,9 @@ const Profile = () => {
   const { setUser,user } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
 
+
+  
+
   const handleOpenForm = () => {
     setOpen(!open);
     console.log(open);

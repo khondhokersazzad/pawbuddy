@@ -78,7 +78,7 @@ const NavBar = () => {
           </div>
           {user?.uid ? (
             <div>
-              <div className="avatar" title={user?.displayName}>
+              <div  className="avatar mr-3" title={user?.displayName}>
                 <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring-2 ring-offset-2">
                   <img src={user?.photoURL} />
                 </div>
