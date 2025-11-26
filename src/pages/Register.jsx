@@ -98,6 +98,7 @@ const Register = () => {
   };
   return (
     <div>
+      <title>Register</title>
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col w-full">
           <h1 className="text-5xl font-bold">Register</h1>

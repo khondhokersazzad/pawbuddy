@@ -3,6 +3,8 @@ import React from 'react';
 const Error = () => {
   return (
     <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-b from-purple-200 to-pink-200 px-4">
+    <title>Error</title>
+      
       <h1 className="text-8xl font-extrabold text-purple-600 drop-shadow-md">
         404
       </h1>

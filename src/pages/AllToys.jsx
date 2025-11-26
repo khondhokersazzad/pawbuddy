@@ -14,6 +14,8 @@ const AllToys = () => {
   }, []);
   return (
     <div>
+    <title>All Toys</title>
+
       <h1 className="text-3xl font-bold text-center text-purple-600 mt-8">All Toys ({allToys.length})</h1>
       <div
       className="grid 

@@ -42,6 +42,7 @@ const Profile = () => {
 
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center mt-5  gap-4">
+      <title>My Profile</title>
       <div className="avatar">
         <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
           <img src={user?.photoURL} referrerPolicy="no-referrer" />

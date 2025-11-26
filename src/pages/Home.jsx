@@ -6,6 +6,8 @@ import CategoryToysdemo from "../components/CategoryToysdemo";
 const Home = () => {
   return (
     <div>
+    <title>Home</title>
+
       <section className="w-full mx-auto">
         <Slider></Slider>
       </section>
