@@ -14,6 +14,7 @@ import AddListing from "../pages/AddListing";
 import MyListing from "../pages/MyListing";
 import UpdateListing from "../pages/UpdateListing";
 import MyOrders from "../pages/MyOrders";
+import Category from "../pages/Category";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
       {
         path: "/all-products",
         element: <AllProducts></AllProducts>,
+      },
+
+      {
+        path: "/category/:categoryName",
+        element: <Category></Category>,
       },
 
       {
