@@ -19,7 +19,7 @@ const Slider = () => {
           dynamicBullets: true,
         }}
         autoplay={{
-          delay: 2000, 
+          delay: 4000, 
           disableOnInteraction: false, 
           
         }}

@@ -2,8 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import axios from "axios";
 import { useNavigate } from "react-router";
-
-
+import Swal from "sweetalert2";
 
 const AddListing = () => {
   const { user } = useContext(AuthContext);
@@ -33,12 +32,18 @@ const AddListing = () => {
     //req.body part
     axios.post("http://localhost:3000/services", formData).then((res) => {
       console.log(res);
-      navigation('/my-listing');
+      navigation("/my-listing");
+      if (res.data.acknowledged) {
+        Swal.fire({
+          title: "Successfully Add!",
+          icon: "success",
+          draggable: true,
+        });
+      }
       
     });
 
     console.log(user);
-    
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-amber-50 via-rose-50 to-amber-100">
@@ -165,7 +170,6 @@ const AddListing = () => {
                 readOnly
                 className="w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-gray-700"
               />
-              
             </div>
 
             <div className="md:col-span-2 flex items-center justify-between gap-4">
@@ -179,8 +183,6 @@ const AddListing = () => {
               </div>
             </div>
           </form>
-
-          
         </div>
       </div>
     </div>

@@ -33,7 +33,7 @@ const AllProducts = () => {
       </select>
 
       <h1 className="text-3xl font-bold text-center text-purple-600 mt-8">
-        All Toys ({allProducts.length})
+        All Products ({allProducts.length})
       </h1>
       <div
         className="grid 

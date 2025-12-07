@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { Link, useParams } from "react-router";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const MyListing = () => {
   const [pet, setPet] = useState([]);
@@ -19,18 +20,38 @@ const MyListing = () => {
   }, [user?.email]);
 
   const handleDelete = (id) => {
-    axios
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
       .delete(`http://localhost:3000/delete/${id}`)
       .then((res) => {
-        const filterData = pet.filter((service) => service._id != id);
+        if(res.data.deletedCount == 1){
+          const filterData = pet.filter((service) => service._id != id);
         setPet(filterData);
+        }
+        
       })
       .catch((err) => console.log(err));
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
+
+    
   };
   return (
     <div>
-      
-
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

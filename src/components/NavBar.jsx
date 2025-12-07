@@ -52,7 +52,7 @@ const NavBar = () => {
                 }
                 to="/all-products"
               >
-                All Products
+                Pets & Supplies Page
               </NavLink>
             </li>
 
@@ -154,7 +154,7 @@ const NavBar = () => {
                     isActive ? "text-purple-700 font-bold" : ""
                   }
                 >
-                  All Products
+                 Pets & Supplies Page
                 </NavLink>
               </li>
               {user && (
