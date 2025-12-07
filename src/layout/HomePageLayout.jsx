@@ -2,8 +2,8 @@ import React from "react";
 import NavBar from "../components/NavBar";
 import Slider from "../components/Slider";
 
-import AllToys from "../pages/AllToys";
-import PopularToys from "../components/PopularToys";
+import AllToys from "../pages/AllProducts";
+import PopularToys from "../components/PopularProducts";
 import CategoryToys from "../components/CategoryToys";
 import CategoryToysdemo from "../components/CategoryToysdemo";
 import { Outlet } from "react-router";
@@ -11,13 +11,9 @@ import Footer from "../components/Footer";
 
 const HomePageLayout = () => {
   return (
-    <div
-      className="bg-linear-to-br from-blue-100 via-pink-100 
-      to-purple-100 min-h-screen"
-    >
+    <div className="bg-gradient-to-b from-amber-50 via-rose-50 to-amber-100 min-h-screen">
       <header>
         <nav>
-          
           <NavBar></NavBar>
         </nav>
       </header>

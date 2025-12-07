@@ -30,7 +30,7 @@ const AuthProvider = ({ children }) => {
       return () => unsubscribe(); //cleanup function
     })
   },[])
-  console.log(user);
+  
 
   const authData = {
     registerUserwithPass,user , setUser, handleGoogleSignIn,loading

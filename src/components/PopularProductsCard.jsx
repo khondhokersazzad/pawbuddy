@@ -1,16 +1,16 @@
 import React from "react";
 import { Link } from "react-router";
 
-const PopularToysCard = ({ toy }) => {
+const PopularToysCard = ({ pet }) => {
   const {
-    toyId,
-    toyName,
-    pictureURL,
+    _id,
+    name,
+    image,
     price,
     rating,
-    availableQuantity,
-    subCategory,
-  } = toy;
+    // availableQuantity,
+    category,
+  } = pet;
 
   return (
     <div>
@@ -18,16 +18,16 @@ const PopularToysCard = ({ toy }) => {
 
         {/* Toy Image */}
         <img
-          src={pictureURL}
-          alt={toyName}
+          src={image}
+          alt={name}
           className="w-full h-48 object-cover rounded-t-2xl"
         />
 
         <div className="p-4 space-y-2">
 
-          <h3 className="text-xl font-bold text-purple-700">{toyName}</h3>
+          <h3 className="text-xl font-bold text-purple-700">{name}</h3>
           <p className="text-sm text-rose-500 font-medium">
-            Category: {subCategory}
+            Category: {category}
           </p>
 
           <div className="flex justify-between items-center text-sm mt-2">
@@ -39,16 +39,16 @@ const PopularToysCard = ({ toy }) => {
             </p>
           </div>
 
-          <p className="text-sm text-gray-700">
+          {/* <p className="text-sm text-gray-700">
             Available:{" "}
             <span className="font-semibold text-green-600">
               {availableQuantity}
             </span>
-          </p>
+          </p> */}
 
           {/* Cute kids-themed View More button */}
           <Link
-            to={`/toy-details/${toyId}`}
+            to={`/details/${_id}`}
             className="block text-center mt-3 bg-purple-500 text-white py-2 rounded-full shadow-md hover:bg-purple-600 hover:shadow-lg transition-all"
           >
             🎈 View More

@@ -21,26 +21,27 @@ const Slider = () => {
         autoplay={{
           delay: 2000, 
           disableOnInteraction: false, 
-          pauseOnMouseEnter: true,
+          
         }}
         modules={[Pagination, Autoplay]}
         className="mySwiper rounded-2xl overflow-hidden"
       >
         <SwiperSlide>
           <div
-            className="relative h-[80vh] bg-cover bg-center flex items-center justify-center"
+            className="relative h-[90vh] bg-cover bg-center flex items-center justify-center"
             style={{
               backgroundImage:
-                "url('https://i.postimg.cc/4yHj3Knh/Header-Banner-Desktop.jpg')",
+                // "url('https://i.postimg.cc/8k7TW4GQ/eric-ward-ISg37AI2A-s-unsplash.jpg')",
+                "url('https://i.postimg.cc/bNPF8Ymy/xan-griffin-UCFg-M-Aoj-Fg-unsplash.jpg')",
             }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
             <div className="relative text-center text-white px-6">
               <h2 className="text-3xl md:text-5xl font-bold mb-2">
-                Build Your Imagination
+                Find Your Forever Friend
               </h2>
               <p className="text-lg opacity-90">
-                Create endless designs with colorful Lego blocks.
+                Give a loving home to a pet waiting for a second chance.
               </p>
             </div>
           </div>
@@ -48,19 +49,19 @@ const Slider = () => {
 
         <SwiperSlide>
           <div
-            className="relative h-[80vh] bg-cover bg-center flex items-center justify-center"
+            className="relative h-[90vh] bg-cover bg-center flex items-center justify-center"
             style={{
               backgroundImage:
-                "url('https://i.postimg.cc/tRdMBHWC/360-F-613927112-jnv8zi6Bao-MCx-Ud3VIUh-UFDlc-Zteq-GQY.webp')",
+                "url('https://i.postimg.cc/DZHkBVhK/yerlin-matu-Gtwi-Bmt-Jva-U-unsplash-(1).jpg')",
             }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
             <div className="relative text-center text-white px-6">
               <h2 className="text-3xl md:text-5xl font-bold mb-2">
-                Speed & Adventure
+                Adopt Love, Not Just a Pet
               </h2>
               <p className="text-lg opacity-90">
-                Race through fun tracks with your own car collection.
+                Choose companionship, joy, and loyalty that lasts a lifetime.
               </p>
             </div>
           </div>
@@ -68,19 +69,19 @@ const Slider = () => {
 
         <SwiperSlide>
           <div
-            className="relative h-[80vh] bg-cover bg-center flex items-center justify-center"
+            className="relative h-[90vh] bg-cover bg-center flex items-center justify-center"
             style={{
               backgroundImage:
-                "url('https://i.postimg.cc/GpkFbbct/jpeg-optimizer-Building-a-Robot.jpg')",
+                "url('https://i.postimg.cc/8k7TW4GQ/eric-ward-ISg37AI2A-s-unsplash.jpg')",
             }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
             <div className="relative text-center text-white px-6">
               <h2 className="text-3xl md:text-5xl font-bold mb-2">
-                Smart Robot Builders
+                Every Paw Deserves a Home
               </h2>
               <p className="text-lg opacity-90">
-                Assemble and program your own robot buddy!
+                Be the reason a furry friend gets a warm and caring family.
               </p>
             </div>
           </div>
@@ -88,19 +89,19 @@ const Slider = () => {
 
         <SwiperSlide>
           <div
-            className="relative h-[80vh] bg-cover bg-center flex items-center justify-center"
+            className="relative h-[90vh] bg-cover bg-center flex items-center justify-center"
             style={{
               backgroundImage:
-                "url('https://i.postimg.cc/g2yjJjZr/81c-Js-Fab-GPL.jpg')",
+                "url('https://i.postimg.cc/bwJgNZb6/taylor-sondgeroth-lts-KOg-q-Gc-unsplash.jpg')",
             }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
             <div className="relative text-center text-white px-6">
               <h2 className="text-3xl md:text-5xl font-bold mb-2">
-                Creative Magnetic Tiles
+                Rescue, Adopt, Love
               </h2>
               <p className="text-lg opacity-90">
-                Build towers, houses, and patterns that glow!
+                Change a life today, yours and your future pet’s
               </p>
             </div>
           </div>
@@ -108,19 +109,19 @@ const Slider = () => {
 
         <SwiperSlide>
           <div
-            className="relative h-[80vh] bg-cover bg-center flex items-center justify-center"
+            className="relative h-[90vh] bg-cover bg-center flex items-center justify-center"
             style={{
               backgroundImage:
-                "url('https://i.postimg.cc/KvpS52hJ/download.webp')",
+                "url('https://i.postimg.cc/tThtmWQW/alvan-nee-73flbl-FUks-Y-unsplash.jpg')",
             }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
             <div className="relative text-center text-white px-6">
               <h2 className="text-3xl md:text-5xl font-bold mb-2">
-                Dinosaur Adventures
+               Your New Best Friend Awaits
               </h2>
               <p className="text-lg opacity-90">
-                Step into the Jurassic world with roaring dinos!
+                Browse adorable pets ready to join your family and fill your home with joy.
               </p>
             </div>
           </div>
@@ -128,19 +129,19 @@ const Slider = () => {
 
         <SwiperSlide>
           <div
-            className="relative h-[80vh] bg-cover bg-center flex items-center justify-center"
+            className="relative h-[90vh] bg-cover bg-center flex items-center justify-center"
             style={{
               backgroundImage:
-                "url('https://i.postimg.cc/kXmBdW28/premium-photo-1661448604365-4ef469471a6d.avif')",
+                "url('https://i.postimg.cc/J7sBnjdc/andrew-s-ouo1hbiz-Wwo-unsplash-(1).jpg')",
             }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
             <div className="relative text-center text-white px-6">
               <h2 className="text-3xl md:text-5xl font-bold mb-2">
-                All Aboard the Toy Train
+                Give a Paw a New Beginning
               </h2>
               <p className="text-lg opacity-90">
-                Watch your electric train light up the track!
+                Adoption is the first step toward a lifetime of cuddles and happiness!
               </p>
             </div>
           </div>

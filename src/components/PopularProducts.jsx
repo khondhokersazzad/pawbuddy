@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
-import PopularToysCard from "./PopularToysCard";
+import PopularProductsCard from "./PopularProductsCard";
 
-const PopularToys = () => {
-  const [toys, setToys] = useState([]);
+const PopularProducts = () => {
+  const [pets, setPets] = useState([]);
+
   useEffect(() => {
-    fetch("/toys.json")
+    fetch(`http://localhost:3000/services`)
       .then((res) => res.json())
       .then((data) => {
-        const popular = data.filter((toy) => toy.rating >= 4.5);
-        setToys(popular);
+        setPets(data);
       });
   }, []);
   return (
     <div>
       <h1 className="chewy text-purple-700 text-3xl font-bold text-center py-5 my-5">
-        Popular Toys 🧸
+        Recently Added
       </h1>
+
+      
+
       <div
         className="grid 
         grid-cols-1        
@@ -25,12 +28,12 @@ const PopularToys = () => {
         max-w-6xl mx-auto
         px-4"
       >
-        {toys.map((toy) => {
-          return <PopularToysCard toy={toy}></PopularToysCard>;
+        {pets.map((pet) => {
+          return <PopularProductsCard pet={pet}></PopularProductsCard>;
         })}
       </div>
     </div>
   );
 };
 
-export default PopularToys;
+export default PopularProducts;

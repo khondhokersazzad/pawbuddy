@@ -1,231 +1,288 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
 import { toast } from "react-toastify";
+import { AuthContext } from "../provider/AuthProvider";
+import axios from "axios";
 
 const ToyDetails = () => {
   const { id } = useParams();
-  const [toys, setToys] = useState([]);
-  const [toy, setToy] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { user } = useContext(AuthContext);
+  const navigation = useNavigate();
+
+  
+
+  const [pet, setPet] = useState();
+  const[quantity,setQuantity] = useState(0);
 
   
 
   useEffect(() => {
-    setLoading(true);
-    fetch("/toys.json")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to load toy data");
-        return res.json();
-      })
-      .then((data) => setToys(data || []))
-      .catch((err) => {
-        console.error(err);
-        setToys([]);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+    fetch(`http://localhost:3000/services/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
 
-  useEffect(() => {
-    if (!toys || toys.length === 0) {
-      setToy(null);
-      return;
-    }
-    const found = toys.find((t) => String(t.toyId) === String(id));
-    setToy(found || null);
-  }, [id, toys]);
+        setPet(data);
+      })
+      .catch((err) => console.log(err));
+  }, [id]);
 
-  // simple star renderer
-  const Stars = ({ rating = 0 }) => {
-    const full = Math.floor(rating);
-    const half = rating - full >= 0.5;
-    const empty = 5 - full - (half ? 1 : 0);
-    return (
-      <div className="flex items-center space-x-1" aria-hidden>
-        {Array.from({ length: full }).map((_, i) => (
-          <svg
-            key={"f" + i}
-            className="w-5 h-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.18 3.63a1 1 0 00.95.69h3.814c.969 0 1.371 1.24.588 1.81l-3.088 2.244a1 1 0 00-.364 1.118l1.18 3.63c.3.921-.755 1.688-1.54 1.118L10 14.347l-3.711 2.82c-.785.57-1.84-.197-1.54-1.118l1.18-3.63a1 1 0 00-.364-1.118L2.656 9.057c-.783-.57-.38-1.81.588-1.81h3.814a1 1 0 00.95-.69l1.18-3.63z" />
-          </svg>
-        ))}
-        {half && (
-          <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-            <defs>
-              <linearGradient id="halfgrad">
-                <stop offset="50%" stopColor="currentColor" />
-                <stop offset="50%" stopColor="transparent" />
-              </linearGradient>
-            </defs>
-            <path
-              fill="url(#halfgrad)"
-              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.18 3.63a1 1 0 00.95.69h3.814c.969 0 1.371 1.24.588 1.81l-3.088 2.244a1 1 0 00-.364 1.118l1.18 3.63c.3.921-.755 1.688-1.54 1.118L10 14.347l-3.711 2.82c-.785.57-1.84-.197-1.54-1.118l1.18-3.63a1 1 0 00-.364-1.118L2.656 9.057c-.783-.57-.38-1.81.588-1.81h3.814a1 1 0 00.95-.69l1.18-3.63z"
-            />
-          </svg>
-        )}
-        {Array.from({ length: empty }).map((_, i) => (
-          <svg
-            key={"e" + i}
-            className="w-5 h-5 opacity-30"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.18 3.63a1 1 0 00.95.69h3.814c.969 0 1.371 1.24.588 1.81l-3.088 2.244a1 1 0 00-.364 1.118l1.18 3.63c.3.921-.755 1.688-1.54 1.118L10 14.347l-3.711 2.82c-.785.57-1.84-.197-1.54-1.118l1.18-3.63a1 1 0 00-.364-1.118L2.656 9.057c-.783-.57-.38-1.81.588-1.81h3.814a1 1 0 00.95-.69l1.18-3.63z" />
-          </svg>
-        ))}
-      </div>
-    );
+  const handleOrder = (e) =>{
+    e.preventDefault();
+    const buyerName = e.target.buyerName.value;
+const email = e.target.email.value;
+const listingId = e.target.listingId.value;
+const listingName = e.target.listingName.value;
+const quantity = parseInt(e.target.quantity.value);
+const price = parseInt(e.target.price.value);
+const address = e.target.address.value;
+const date = e.target.date.value;
+const phone = e.target.phone.value;
+const notes = e.target.notes.value;
+
+  const formData = {
+     buyerName,
+     email,
+     listingId,
+     listingName,
+    quantity,
+     price,
+     address,
+     date,
+     phone,
+     notes
   };
 
+   axios.post("http://localhost:3000/orders", formData).then((res) => {
+      console.log(res);
+      navigation('/my-listing');
+      
+    });
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-blue-100 via-pink-100 to-purple-100">
-        <div className="text-center">
-          <div className="animate-pulse text-2xl font-bold text-purple-700">
-            Loading toy...
-          </div>
-          <div className="mt-3 text-sm text-gray-600">
-            Tiny elves are fetching the toy details 🎈
-          </div>
-        </div>
-      </div>
-    );
+  
   }
 
-  if (!toy) {
-    return (
-      <div className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-blue-100 via-pink-100 to-purple-100">
-        <div className="max-w-xl w-full bg-white/80 backdrop-blur rounded-2xl p-8 shadow-2xl text-center">
-          <h2 className="text-2xl font-extrabold text-purple-700">
-            Toy not found 😅
-          </h2>
-          <p className="mt-3 text-gray-700">
-            We couldn't find a toy with id{" "}
-            <span className="font-mono">{id}</span>.
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  const handleTryForm = (e) =>{
-    e.preventDefault();
-    toast('Form Submitted successfully');
-  }
+   
 
   return (
-    <div className="min-h-screen p-6 bg-gradient-to-br from-blue-100 via-pink-100 to-purple-100">
-      <div className="max-w-3xl mx-auto space-y-8">
-        {/* Toy Image */}
-        <div className="rounded-2xl overflow-hidden shadow-2xl">
-          <img
-            src={
-              toy.pictureURL ||
-              "https://via.placeholder.com/800x600?text=Toy+Image"
-            }
-            alt={toy.toyName}
-            className="w-full h-96 object-cover"
-            onError={(e) =>
-              (e.currentTarget.src =
-                "https://via.placeholder.com/800x600?text=Toy+Image")
-            }
-          />
+    <div className="min-h-screen bg-gradient-to-b from-amber-50 via-rose-50 to-amber-100 p-6 flex flex-col items-center justify-center">
+      <div className="max-w-4xl w-full bg-white/90 backdrop-blur-md rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+        <div className="md:col-span-1 flex items-center justify-center">
+          <div className="w-full">
+            <img
+              src={pet?.image}
+              alt={pet?.name}
+              className="w-full h-64 object-cover rounded-xl shadow-inner"
+              onError={(e) => {
+                e.currentTarget.src =
+                  "https://via.placeholder.com/600x400?text=No+Image";
+              }}
+            />
+
+            <div className="mt-4 text-center space-y-2">
+              <h2 className="text-xl font-semibold">{pet?.name}</h2>
+              <p className="text-sm text-gray-600">{pet?.category}</p>
+              {/* <p className="text-lg font-bold">{pet?.priceLabel || 'Nan'}</p> */}
+            </div>
+          </div>
         </div>
 
-        {/* Toy Info Card */}
-        <div className="bg-white/90 rounded-2xl p-6 shadow-2xl">
-          <h1 className="text-3xl font-extrabold text-purple-700">
-            {toy.toyName}
-          </h1>
-          <p className="mt-1 text-sm text-gray-600">
-            by{" "}
-            <span className="font-semibold text-gray-800">
-              {toy.sellerName}
-            </span>{" "}
-            • <span className="text-xs text-gray-500">{toy.sellerEmail}</span>
-          </p>
-
-          <div className="mt-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Stars rating={toy.rating} />
-              <span className="text-sm text-gray-700 font-medium">
-                {toy.rating ?? "No rating"}
-              </span>
+        <div className="md:col-span-2">
+          <div className="flex items-start justify-between">
+            <div>
+              <h1 className="text-2xl font-extrabold">{pet?.name}</h1>
+              <p className="text-sm text-gray-500">
+                ID: <span className="font-mono">{pet?._id}</span>
+              </p>
             </div>
 
             <div className="text-right">
-              <div className="text-2xl font-bold text-pink-600">
-                ${toy.price?.toFixed ? toy.price.toFixed(2) : toy.price}
-              </div>
-              <div className="text-xs text-gray-500">
-                Qty:{" "}
-                <span className="font-medium text-gray-700">
-                  {toy.availableQuantity ?? 0}
-                </span>
-              </div>
+              {/* <p className="text-sm text-gray-500">Posted: <span className="font-medium">{formattedDate}</span></p> */}
+              <p className="text-sm text-gray-500">
+                Location: <span className="font-medium">{pet?.location}</span>
+              </p>
             </div>
           </div>
 
-          <p className="mt-6 text-gray-700 leading-relaxed">
-            {toy.description}
-          </p>
+          <section className="mt-6">
+            <h3 className="text-lg font-semibold mb-2">About {pet?.name}</h3>
+            <p className="text-gray-700 leading-relaxed">{pet?.description}</p>
+          </section>
+        </div>
+      </div>
+      {/* Form Field for Adoption or Buy Modal */}
+      <div className="my-5">
+        <button
+          className="btn"
+          onClick={() => document.getElementById("my_modal_2").showModal()}
+        >
+          Buy Or Adopt
+        </button>
+        <dialog id="my_modal_2" className="modal">
+          <div className="modal-box">
+            <form onSubmit={handleOrder} className="space-y-4 p-4 bg-white shadow rounded">
+              {/* Buyer Name */}
+              <div>
+                <label htmlFor="buyerName" className="block font-medium">
+                  Buyer Name
+                </label>
+                <input
+                  type="text"
+                  name="buyerName"
+                  id="buyerName"
+                  value={user?.displayName}
+                  readOnly
+                  className="w-full border rounded p-2 bg-gray-100"
+                />
+              </div>
 
-          <div className="mt-4 flex gap-2">
-            <span className="inline-block px-3 py-1 rounded-full bg-white/90 text-sm font-semibold text-indigo-600 shadow-sm">
-              {toy.subCategory || "Toy"}
-            </span>
-            <span className="inline-block px-3 py-1 rounded-full bg-white/90 text-sm font-semibold text-pink-600 shadow-sm">
-              Age {toy.ageGroup || "All"}
-            </span>
+              {/* Email */}
+              <div>
+                <label htmlFor="email" className="block font-medium">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  value={user?.email}
+                  readOnly
+                  className="w-full border rounded p-2 bg-gray-100"
+                />
+              </div>
+
+              {/* Listing ID */}
+              <div>
+                <label htmlFor="listingId" className="block font-medium">
+                  Product / Listing ID
+                </label>
+                <input
+                  type="text"
+                  name="listingId"
+                  id="listingId"
+                  value={pet?._id}
+                  readOnly
+                  className="w-full border rounded p-2 bg-gray-100"
+                />
+              </div>
+
+              {/* Listing Name */}
+              <div>
+                <label htmlFor="listingName" className="block font-medium">
+                  Product / Listing Name
+                </label>
+                <input
+                  type="text"
+                  name="listingName"
+                  id="listingName"
+                  value={pet?.name}
+                  readOnly
+                  className="w-full border rounded p-2 bg-gray-100"
+                />
+              </div>
+
+              {/* Quantity */}
+              <div>
+                <label htmlFor="quantity" className="block font-medium">
+                  Quantity
+                </label>
+                <input
+                  type="number"
+                  name="quantity"
+                  id="quantity"
+                  value={pet?.category === "Pets" ? 1 : quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
+                  readOnly={pet?.category === "Pets"}
+                  className="w-full border rounded p-2"
+                />
+               </div>
+
+              {/* Price */}
+              <div>
+                <label htmlFor="price" className="block font-medium">
+                  Price
+                </label>
+                <input
+                  type="number"
+                  name="price"
+                  id="price"
+                  value={pet?.price}
+                  readOnly
+                  className="w-full border rounded p-2 bg-gray-100"
+                />
+              </div>
+
+              {/* Address */}
+              <div>
+                <label htmlFor="address" className="block font-medium">
+                  Address
+                </label>
+                <input
+                  type="text"
+                  name="address"
+                  id="address"
+                  placeholder="Enter your address"
+                  className="w-full border rounded p-2"
+                  required
+                />
+              </div>
+
+              {/* Pick-up Date */}
+              <div>
+                <label htmlFor="date" className="block font-medium">
+                  Pick-up Date
+                </label>
+                <input
+                  type="date"
+                  name="date"
+                  id="date"
+                  className="w-full border rounded p-2"
+                  required
+                />
+              </div>
+
+              {/* Phone */}
+              <div>
+                <label htmlFor="phone" className="block font-medium">
+                  Phone
+                </label>
+                <input
+                  type="text"
+                  name="phone"
+                  id="phone"
+                  placeholder="Enter phone number"
+                  className="w-full border rounded p-2"
+                  required
+                />
+              </div>
+
+              {/* Notes */}
+              <div>
+                <label htmlFor="notes" className="block font-medium">
+                  Additional Notes
+                </label>
+                <textarea
+                  name="notes"
+                  id="notes"
+                  placeholder="Any extra information..."
+                  className="w-full border rounded p-2"
+                  rows="3"
+                ></textarea>
+              </div>
+
+              {/* Submit */}
+              <button
+                type="submit"
+                className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+              >
+                Submit Request
+              </button>
+            </form>
           </div>
-        </div>
-
-        {/* Try Now Form */}
-
-        <div className="bg-white/95 rounded-2xl p-6 shadow-lg">
-          <h2 className="text-xl font-bold text-purple-700">Try this toy ✨</h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Leave your name and email — we’ll reach out with details.
-          </p>
-
-          <form onSubmit={handleTryForm} className="mt-4 space-y-4">
-            <label className="block">
-              <span className="text-sm font-medium text-gray-700">
-                Full name
-              </span>
-              <input
-                type="text"
-                className="mt-1 block w-full rounded-lg border border-gray-200 p-3 shadow-sm focus:ring-2 focus:ring-purple-300"
-                placeholder="Your name"
-                required
-              />
-            </label>
-
-            <label className="block">
-              <span className="text-sm font-medium text-gray-700">Email</span>
-              <input
-                type="email"
-                className="mt-1 block w-full rounded-lg border border-gray-200 p-3 shadow-sm focus:ring-2 focus:ring-pink-300"
-                placeholder="you@example.com"
-                required
-              />
-            </label>
-
-            <button
-              type="submit"
-              className="w-full py-3 rounded-xl font-bold text-white bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 shadow-lg hover:scale-[1.01] transform transition"
-            >
-              Try Now
-            </button>
+          <form method="dialog" className="modal-backdrop">
+            <button>close</button>
           </form>
-        </div>
-
-        <div className="text-center text-sm text-gray-600">
-          ✨ Kid-safe toys only. Colors may differ from the picture. 🎈
-        </div>
+        </dialog>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import HomePageLayout from "../layout/HomePageLayout";
 import Home from "../pages/Home";
-import AllToys from "../pages/AllToys";
+import AllProducts from "../pages/AllProducts";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ToyDetails from "../pages/ToyDetails";
@@ -10,6 +10,10 @@ import Profile from "../pages/Profile";
 import PrivateRoute from "./PrivateRoute";
 import Error from "../pages/Error";
 import Forget from "../pages/Forget";
+import AddListing from "../pages/AddListing";
+import MyListing from "../pages/MyListing";
+import UpdateListing from "../pages/UpdateListing";
+import MyOrders from "../pages/MyOrders";
 
 const router = createBrowserRouter([
   {
@@ -22,8 +26,8 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/all-toys",
-        element: <AllToys></AllToys>,
+        path: "/all-products",
+        element: <AllProducts></AllProducts>,
       },
 
       {
@@ -34,8 +38,45 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
       {
-        path: "/toy-details/:id",
+        path: "/add-listing",
+        element: (
+          <PrivateRoute>
+            <AddListing></AddListing>
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: "/my-listing",
+        element: (
+          <PrivateRoute>
+            <MyListing></MyListing>
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: "/update-listing/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateListing></UpdateListing>
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: "/my-orders",
+        element: (
+          <PrivateRoute>
+            <MyOrders></MyOrders>
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: "/details/:id",
         element: (
           <PrivateRoute>
             <ToyDetails></ToyDetails>
