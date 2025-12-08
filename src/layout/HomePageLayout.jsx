@@ -4,8 +4,8 @@ import Slider from "../components/Slider";
 
 import AllToys from "../pages/AllProducts";
 import PopularToys from "../components/PopularProducts";
-import CategoryToys from "../components/CategoryToys";
-import CategoryToysdemo from "../components/CategoryToysdemo";
+// import CategoryToys from "../components/CategoryToys";
+// import CategoryToysdemo from "../components/CategoryToysdemo";
 import { Outlet } from "react-router";
 import Footer from "../components/Footer";
 

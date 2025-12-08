@@ -4,7 +4,7 @@ import { Link } from "react-router";
 const CategoryCard = ({ title, image }) => {
   return (
     <Link to={`/category/${title.toLowerCase()}`}>
-      <div className="relative h-60 w-48 rounded-3xl overflow-hidden shadow-xl cursor-pointer group bg-gradient-to-br from-pink-200 via-purple-200 to-yellow-200">
+      <div className="relative h-60  rounded-3xl overflow-hidden shadow-xl cursor-pointer group bg-gradient-to-br from-pink-200 via-purple-200 to-yellow-200">
 
         {/* Background Image */}
         <div

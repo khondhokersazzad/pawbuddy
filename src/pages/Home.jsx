@@ -20,13 +20,13 @@ const Home = () => {
       <section className="w-11/12 mx-auto my-3">
         <PopularToys></PopularToys>
       </section>
-      <section className="w-11/12 mx-auto my-3">
+      <section className="w-11/12 md:w-7xl mx-auto my-16">
         <h1 className="text-center text-3xl font-bold relative w-fit mx-auto py-3">
           Categories
           <span className="block w-16 h-1 bg-purple-500 mx-auto mt-1 rounded"></span>
         </h1>
 
-        <div className="w-11/12 mx-auto my-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="w-11/12 mx-auto my-5 grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-4">
           <CategoryCard
             title="Pets"
             image="https://i.postimg.cc/bwJgNZb6/taylor-sondgeroth-lts-KOg-q-Gc-unsplash.jpg"
@@ -49,13 +49,15 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="w-11/12 mx-auto my-3">
-        <WhyAdopt></WhyAdopt>
+      <section className="w-full bg-slate-50">
+        <WhyAdopt className="w-11/12 mx-auto my-3"></WhyAdopt>
       </section>
 
       <section className="w-11/12 mx-auto my-3">
         <MeetHeroes></MeetHeroes>
       </section>
+
+      
     </div>
   );
 };
