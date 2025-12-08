@@ -1,15 +1,17 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 const MyOrders = () => {
   const [order, setOrder] = useState([]);
+  const {user} = useContext(AuthContext);
 
   useEffect(() => {
     axios
-      .get("https://pawbuddy-five.vercel.app/orders")
+      .get(`https://pawbuddy-five.vercel.app/orders?email=${user.email}`)
       .then((res) => setOrder(res.data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [user.email]);
 
   console.log(order);
 
