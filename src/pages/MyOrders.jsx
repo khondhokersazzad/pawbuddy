@@ -2,23 +2,99 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
+
 const MyOrders = () => {
   const [order, setOrder] = useState([]);
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
+    if (!user?.email) return;
     axios
       .get(`https://pawbuddy-five.vercel.app/orders?email=${user.email}`)
       .then((res) => setOrder(res.data))
       .catch((err) => console.log(err));
-  }, [user.email]);
+  }, [user?.email]);
 
-  console.log(order);
+  const downloadPDF = () => {
+    const doc = new jsPDF({
+      orientation: "portrait",
+      unit: "pt",
+      format: "a4",
+    });
+
+    // Title
+    doc.setFontSize(16);
+    doc.text("My Orders", 40, 40);
+
+    // Columns for the table
+    const tableColumn = [
+      "#",
+      "Product/Listing",
+      "Buyer Name",
+      "Price",
+      "Qty",
+      "Address",
+      "Date",
+      "Phone",
+    ];
+
+    // Rows: map your order state into arrays of values
+    const tableRows = order.map((item, index) => [
+      index + 1,
+      item.listingName ?? "",
+      item.buyerName ?? "",
+      item.price ?? "",
+      item.quantity ?? "",
+      item.address ?? "",
+      item.date ?? "",
+      item.phone ?? "",
+    ]);
+
+    // If no orders, put a single placeholder row so PDF isn't empty
+    if (tableRows.length === 0) {
+      tableRows.push(["", "No orders found", "", "", "", "", "", ""]);
+    }
+
+    // Use autoTable by passing doc explicitly (Vite-safe)
+    autoTable(doc, {
+      head: [tableColumn],
+      body: tableRows,
+      startY: 60,
+      styles: { fontSize: 10, cellPadding: 6 },
+      headStyles: { fillColor: [243, 199, 199] },
+      alternateRowStyles: { fillColor: [250, 248, 247] },
+      margin: { left: 20, right: 20, top: 20 },
+      didDrawPage: (data) => {
+        // Footer with page number
+        const pageCount = doc.internal.getNumberOfPages();
+        const page = doc.internal.getCurrentPageInfo().pageNumber;
+        doc.setFontSize(9);
+        doc.text(
+          `Page ${page} of ${pageCount}`,
+          data.settings.margin.left,
+          doc.internal.pageSize.height - 10
+        );
+      },
+    });
+
+    doc.save("my-orders.pdf");
+  };
 
   return (
     <>
-      {/* Responsive Orders -> Table on md+, Card list on mobile */}
       <div className="w-full p-4">
+        <div className="flex items-center justify-between mb-4">
+          <h1 className="text-xl font-bold">My Orders</h1>
+          <button
+            onClick={downloadPDF}
+            className="text-sm px-4 py-2 rounded bg-purple-600 text-white hover:bg-purple-700"
+          >
+            Download as PDF
+          </button>
+        </div>
+
         {/* Desktop / Tablet: table (md+) */}
         <div className="hidden md:block overflow-x-auto h-96 w-full p-2">
           <table className="min-w-full rounded-lg shadow-md">
@@ -74,7 +150,7 @@ const MyOrders = () => {
           {Array.isArray(order) && order.length ? (
             order.map((item, index) => (
               <article
-                key={item._id ?? index}
+                key={item._1d ?? index}
                 className="bg-white/90 rounded-xl p-4 shadow-sm border border-rose-50"
               >
                 <div className="flex items-start justify-between">
