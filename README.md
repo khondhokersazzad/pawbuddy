@@ -54,11 +54,13 @@ User profile page with avatar & logout
 
 📝 User Actions
 
-Add pet listings (if enabled)
+Add pet listings 
 
-Manage orders (if enabled)
+Manage orders 
 
-Bookmark or interact with pets
+My Orders
+
+Download My Orders list as PDF
 
 🎨 UI & Experience
 
@@ -111,3 +113,5 @@ react-toastify
 daisyUI 
 
 sweetalert2
+
+JSPDF
