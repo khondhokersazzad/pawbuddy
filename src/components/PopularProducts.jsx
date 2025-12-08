@@ -5,7 +5,7 @@ const PopularProducts = () => {
   const [pets, setPets] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/services`)
+    fetch(`https://pawbuddy-five.vercel.app/services`)
       .then((res) => res.json())
       .then((data) => {
         setPets(data);
@@ -16,8 +16,6 @@ const PopularProducts = () => {
       <h1 className="chewy text-purple-700 text-3xl font-bold text-center py-5 my-5">
         Recently Added
       </h1>
-
-      
 
       <div
         className="grid 

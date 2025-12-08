@@ -9,15 +9,11 @@ const ToyDetails = () => {
   const { user } = useContext(AuthContext);
   const navigation = useNavigate();
 
-  
-
   const [pet, setPet] = useState();
-  const[quantity,setQuantity] = useState(0);
-
-  
+  const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/services/${id}`)
+    fetch(`https://pawbuddy-five.vercel.app/services/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -27,42 +23,39 @@ const ToyDetails = () => {
       .catch((err) => console.log(err));
   }, [id]);
 
-  const handleOrder = (e) =>{
+  const handleOrder = (e) => {
     e.preventDefault();
     const buyerName = e.target.buyerName.value;
-const email = e.target.email.value;
-const listingId = e.target.listingId.value;
-const listingName = e.target.listingName.value;
-const quantity = parseInt(e.target.quantity.value);
-const price = parseInt(e.target.price.value);
-const address = e.target.address.value;
-const date = e.target.date.value;
-const phone = e.target.phone.value;
-const notes = e.target.notes.value;
+    const email = e.target.email.value;
+    const listingId = e.target.listingId.value;
+    const listingName = e.target.listingName.value;
+    const quantity = parseInt(e.target.quantity.value);
+    const price = parseInt(e.target.price.value);
+    const address = e.target.address.value;
+    const date = e.target.date.value;
+    const phone = e.target.phone.value;
+    const notes = e.target.notes.value;
 
-  const formData = {
-     buyerName,
-     email,
-     listingId,
-     listingName,
-    quantity,
-     price,
-     address,
-     date,
-     phone,
-     notes
+    const formData = {
+      buyerName,
+      email,
+      listingId,
+      listingName,
+      quantity,
+      price,
+      address,
+      date,
+      phone,
+      notes,
+    };
+
+    axios
+      .post("https://pawbuddy-five.vercel.app/orders", formData)
+      .then((res) => {
+        console.log(res);
+        navigation("/my-listing");
+      });
   };
-
-   axios.post("http://localhost:3000/orders", formData).then((res) => {
-      console.log(res);
-      navigation('/my-listing');
-      
-    });
-
-  
-  }
-
-   
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50 via-rose-50 to-amber-100 p-6 flex flex-col items-center justify-center">
@@ -120,7 +113,10 @@ const notes = e.target.notes.value;
         </button>
         <dialog id="my_modal_2" className="modal">
           <div className="modal-box">
-            <form onSubmit={handleOrder} className="space-y-4 p-4 bg-white shadow rounded">
+            <form
+              onSubmit={handleOrder}
+              className="space-y-4 p-4 bg-white shadow rounded"
+            >
               {/* Buyer Name */}
               <div>
                 <label htmlFor="buyerName" className="block font-medium">
@@ -195,7 +191,7 @@ const notes = e.target.notes.value;
                   readOnly={pet?.category === "Pets"}
                   className="w-full border rounded p-2"
                 />
-               </div>
+              </div>
 
               {/* Price */}
               <div>

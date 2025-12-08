@@ -10,14 +10,13 @@ const UpdateListing = () => {
   const { id } = useParams();
   const navigation = useNavigate();
   useEffect(() => {
-  fetch(`http://localhost:3000/services/${id}`)
-    .then(res => res.json())
-    .then(data => {
-      
-      setServices(data);
-      setCategory(data.category);
-    });
-}, [id]); ;
+    fetch(`https://pawbuddy-five.vercel.app/services/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setServices(data);
+        setCategory(data.category);
+      });
+  }, [id]);
 
   console.log(services);
 
@@ -42,13 +41,13 @@ const UpdateListing = () => {
       date,
       email,
     };
-    axios.put(`http://localhost:3000/update/${id}`, formData)
-    .then(res => {
-      
-      console.log(res.data);
-      navigation('/my-listing');
-    })
-    .catch(errr => console.log(errr));
+    axios
+      .put(`https://pawbuddy-five.vercel.app/update/${id}`, formData)
+      .then((res) => {
+        console.log(res.data);
+        navigation("/my-listing");
+      })
+      .catch((errr) => console.log(errr));
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-amber-50 via-rose-50 to-amber-100">

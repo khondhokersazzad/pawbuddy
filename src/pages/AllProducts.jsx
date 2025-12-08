@@ -3,10 +3,10 @@ import AllProductsCard from "../components/AllProductsCard";
 
 const AllProducts = () => {
   const [allProducts, setAllProducts] = useState([]);
-    const [category, setCategory] = useState('');
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:3000/services?category=${category}`)
+    fetch(`https://pawbuddy-five.vercel.app/services?category=${category}`)
       .then((res) => res.json())
       .then((data) => {
         const pets = data;

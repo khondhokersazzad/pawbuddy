@@ -6,7 +6,7 @@ const MyOrders = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/orders")
+      .get("https://pawbuddy-five.vercel.app/orders")
       .then((res) => setOrder(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -45,7 +45,9 @@ const MyOrders = () => {
                     <td className="py-3 px-4 font-semibold text-amber-800">
                       {index + 1}
                     </td>
-                    <td className="py-3 text-center px-4">{item.listingName}</td>
+                    <td className="py-3 text-center px-4">
+                      {item.listingName}
+                    </td>
                     <td className="py-3 text-center px-4">{item.buyerName}</td>
                     <td className="py-3 text-center px-4">৳ {item.price}</td>
                     <td className="py-3 text-center px-4">{item.quantity}</td>

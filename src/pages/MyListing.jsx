@@ -10,7 +10,7 @@ const MyListing = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/my-services?email=${user?.email}`)
+    fetch(`https://pawbuddy-five.vercel.app/my-services?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setPet(data);
@@ -31,15 +31,14 @@ const MyListing = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-      .delete(`http://localhost:3000/delete/${id}`)
-      .then((res) => {
-        if(res.data.deletedCount == 1){
-          const filterData = pet.filter((service) => service._id != id);
-        setPet(filterData);
-        }
-        
-      })
-      .catch((err) => console.log(err));
+          .delete(`https://pawbuddy-five.vercel.app/delete/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount == 1) {
+              const filterData = pet.filter((service) => service._id != id);
+              setPet(filterData);
+            }
+          })
+          .catch((err) => console.log(err));
         Swal.fire({
           title: "Deleted!",
           text: "Your file has been deleted.",
@@ -47,8 +46,6 @@ const MyListing = () => {
         });
       }
     });
-
-    
   };
   return (
     <div>

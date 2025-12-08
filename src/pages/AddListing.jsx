@@ -30,18 +30,19 @@ const AddListing = () => {
     };
 
     //req.body part
-    axios.post("http://localhost:3000/services", formData).then((res) => {
-      console.log(res);
-      navigation("/my-listing");
-      if (res.data.acknowledged) {
-        Swal.fire({
-          title: "Successfully Add!",
-          icon: "success",
-          draggable: true,
-        });
-      }
-      
-    });
+    axios
+      .post("https://pawbuddy-five.vercel.app/services", formData)
+      .then((res) => {
+        console.log(res);
+        navigation("/my-listing");
+        if (res.data.acknowledged) {
+          Swal.fire({
+            title: "Successfully Add!",
+            icon: "success",
+            draggable: true,
+          });
+        }
+      });
 
     console.log(user);
   };
