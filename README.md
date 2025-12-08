@@ -1,16 +1,113 @@
-# React + Vite
+🐾 PawBuddy – Adopt Love. Shop Care.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+PawBuddy is a friendly and heart-warming pet adoption and pet care marketplace built using React + Vite.
+The platform allows users to adopt pets, browse pet food, buy accessories, and access pet care products — all in one place.
 
-Currently, two official plugins are available:
+📌 Project Purpose
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+PawBuddy was created to demonstrate:
 
-## React Compiler
+React Single Page Application (SPA) development
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Firebase Authentication & secure protected routes
 
-## Expanding the ESLint configuration
+CRUD operations for pets & product listings
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+UI/UX design with a soft, pet-friendly theme
+
+Fetching, filtering & displaying pet/product data
+
+Fully responsive mobile-first design
+
+Deployment with secure environment variables
+
+🌐 Live Link
+
+🔗 Live Website: https://tangerine-halva-95a3b9.netlify.app/
+
+⭐ Key Features
+🐶 Pet Adoption System
+
+Explore pets available for adoption
+
+View detailed pet profiles
+
+Adopt (Protected Action – login required)
+
+🛒 Pet Shop + Accessories
+
+Browse pet food, toys, grooming items & accessories
+
+Category-based filtering
+
+Product details page
+
+👤 Authentication & User Dashboard
+
+Email/Password login
+
+Google login
+
+Persistent login using onAuthStateChanged
+
+User profile page with avatar & logout
+
+📝 User Actions
+
+Add pet listings (if enabled)
+
+Manage orders (if enabled)
+
+Bookmark or interact with pets
+
+🎨 UI & Experience
+
+Clean pet-themed design
+
+Animated sliders / banners
+
+Fully responsive layout
+
+Elegant navbar with hover effects
+
+404 custom page
+
+🔐 Security
+
+Environment variables for Firebase keys
+
+Protected routes built with React Router
+
+🛠️ Tech Stack Used
+
+React (Vite)
+
+Firebase Authentication
+
+React Router DOM
+
+TailwindCSS
+
+Axios / Fetch API
+
+JavaScript (ES6+)
+
+📦 NPM Packages Used
+
+react
+
+react-dom
+
+react-router-dom
+
+firebase
+
+tailwindcss
+
+axios
+
+react-toastify
+
+daisyUI 
+
+sweetalert2
