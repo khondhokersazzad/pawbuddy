@@ -1,117 +1,84 @@
-🐾 PawBuddy – Adopt Love. Shop Care.
+# 🐾 PawBuddy – Pet Adoption & Pet Care Marketplace (Frontend)
 
-PawBuddy is a friendly and heart-warming pet adoption and pet care marketplace built using React + Vite.
-The platform allows users to adopt pets, browse pet food, buy accessories, and access pet care products — all in one place.
+PawBuddy is a web-based pet adoption and pet care marketplace designed to help users adopt pets, shop for pet food and accessories, and manage pet-related activities from a single platform.  
+The application focuses on a friendly user experience, secure authentication, and responsive design to create a smooth and heart-warming pet care journey.
 
-📌 Project Purpose
+## 🚀 Live Project
 
-PawBuddy was created to demonstrate:
+- **Live Website:** https://pawbuddy-check.netlify.app/
 
-React Single Page Application (SPA) development
+## 🛠️ Technology Stack
 
-Firebase Authentication & secure protected routes
+### Frontend
+- React.js (Vite)
+- JavaScript (ES6+)
+- Tailwind CSS
+- DaisyUI
+- React Router DOM
+- Axios / Fetch API
 
-CRUD operations for pets & product listings
+### Authentication & Hosting
+- Firebase Authentication
+- Netlify
 
-UI/UX design with a soft, pet-friendly theme
+## ✨ Core Features
 
-Fetching, filtering & displaying pet/product data
+- 🐶 **Pet Adoption System**  
+  Browse pets available for adoption, view detailed pet profiles, and adopt pets through protected routes (login required)
 
-Fully responsive mobile-first design
+- 🛒 **Pet Shop & Accessories**  
+  Explore pet food, toys, grooming items, and accessories with category-based filtering and product detail pages
 
-Deployment with secure environment variables
+- 👤 **Authentication & User Dashboard**  
+  Email/Password login, Google login, persistent authentication using Firebase, and user profile management
 
-🌐 Live Link
+- 📝 **User Actions & Order Management**  
+  Add pet listings, manage orders, view “My Orders”, and download order history as a PDF
 
-🔗 Live Website: https://tangerine-halva-95a3b9.netlify.app/
+- 🎨 **UI & User Experience**  
+  Clean pet-themed design, animated sliders and banners, responsive layout, elegant navigation, and a custom 404 page
 
-⭐ Key Features
-🐶 Pet Adoption System
+- 🔐 **Security & Route Protection**  
+  Environment variables for Firebase keys and protected routes using React Router
 
-Explore pets available for adoption
+## 📦 Dependencies Used
 
-View detailed pet profiles
+- react
+- react-dom
+- react-router-dom
+- firebase
+- axios
+- tailwindcss
+- daisyui
+- react-toastify
+- sweetalert2
+- jspdf
 
-Adopt (Protected Action – login required)
+## 🧑‍💻 Run the Project Locally
 
-🛒 Pet Shop + Accessories
+1. To run the PawBuddy frontend locally, ensure that **Node.js (v16 or later)** and **npm** are installed on your system. Clone the repository and navigate into the project directory:
 
-Browse pet food, toys, grooming items & accessories
+```bash
+git clone https://github.com/khondhokersazzad/pawbuddy.git
+cd pawbuddy
 
-Category-based filtering
+2.Install the required dependencies:
+npm install
 
-Product details page
+3. Create a .env.local file in the root directory and add the following environment variables:
 
-👤 Authentication & User Dashboard
+VITE_API_URL=http://localhost:5000
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+VITE_FIREBASE_PROJECT_ID=your_firebase_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
 
-Email/Password login
+4. Make sure the backend server is running locally or that the API URL points to a deployed backend service. Start the development server:
 
-Google login
+npm run dev
 
-Persistent login using onAuthStateChanged
+5. The application will be available at:
 
-User profile page with avatar & logout
-
-📝 User Actions
-
-Add pet listings 
-
-Manage orders 
-
-My Orders
-
-Download My Orders list as PDF
-
-🎨 UI & Experience
-
-Clean pet-themed design
-
-Animated sliders / banners
-
-Fully responsive layout
-
-Elegant navbar with hover effects
-
-404 custom page
-
-🔐 Security
-
-Environment variables for Firebase keys
-
-Protected routes built with React Router
-
-🛠️ Tech Stack Used
-
-React (Vite)
-
-Firebase Authentication
-
-React Router DOM
-
-TailwindCSS
-
-Axios / Fetch API
-
-JavaScript (ES6+)
-
-📦 NPM Packages Used
-
-react
-
-react-dom
-
-react-router-dom
-
-firebase
-
-tailwindcss
-
-axios
-
-react-toastify
-
-daisyUI 
-
-sweetalert2
-
-JSPDF
+http://localhost:5173
