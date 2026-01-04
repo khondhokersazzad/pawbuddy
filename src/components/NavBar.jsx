@@ -13,10 +13,9 @@ const NavBar = () => {
   };
 
   return (
-    <div>
-      
+    <div className="bg-gradient-to-r from-pink-100 via-yellow-100 to-blue-100">
       <div
-        className="navbar shadow-sm bg-gradient-to-r from-pink-100 via-yellow-100 to-blue-100
+        className="max-w-[1280px] mx-auto navbar shadow-sm 
 
 "
       >
@@ -151,7 +150,7 @@ const NavBar = () => {
                     isActive ? "text-purple-700 font-bold" : ""
                   }
                 >
-                 Pets & Supplies Page
+                  Pets & Supplies Page
                 </NavLink>
               </li>
               {user && (
