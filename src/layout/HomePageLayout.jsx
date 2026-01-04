@@ -11,7 +11,7 @@ import Footer from "../components/Footer";
 
 const HomePageLayout = () => {
   return (
-    <div className="bg-gradient-to-b from-amber-50 via-rose-50 to-amber-100 min-h-screen">
+    <div className="bg-gradient-to-b from-amber-50 via-rose-50 to-amber-100 dark:from-black dark:from-[#1f1b2e] dark:via-[#1b2430] dark:to-[#0f172a] min-h-screen">
       <header>
         <nav>
           <NavBar></NavBar>

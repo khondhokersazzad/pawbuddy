@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import { signOut } from "firebase/auth";
@@ -7,13 +7,33 @@ import auth from "../firebase/firebase.config";
 const NavBar = () => {
   const { user, setUser } = useContext(AuthContext);
 
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
+
+
   const handleLogout = () => {
     signOut(auth);
     setUser(null);
   };
 
   return (
-    <div className="bg-gradient-to-r from-pink-100 via-yellow-100 to-blue-100">
+    <div className="
+  bg-gradient-to-r
+  from-pink-100 via-yellow-100 to-blue-100
+  dark:from-[#1f1b2e] dark:via-[#1b2430] dark:to-[#0f172a]
+">
+
       <div
         className="max-w-[1280px] mx-auto navbar shadow-sm 
 
@@ -209,6 +229,15 @@ const NavBar = () => {
                 </>
               )}
             </ul>
+          </div>
+
+          <div>
+            <input
+           onChange={(e) => handleTheme(e.target.checked)}
+           type="checkbox"
+           defaultChecked={localStorage.getItem('theme') === "dark"}
+           className="toggle"/>
+
           </div>
 
           {user?.uid ? (

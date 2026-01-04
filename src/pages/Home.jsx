@@ -49,13 +49,15 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="w-full bg-slate-50">
-        <WhyAdopt className="w-11/12 mx-auto my-3"></WhyAdopt>
+      <section className="w-full bg-slate-50 dark:bg-slate-950">
+        <WhyAdopt className="w-11/12 mx-auto "></WhyAdopt>
       </section>
 
-      <section className="w-11/12 mx-auto my-3">
-        <MeetHeroes></MeetHeroes>
+      <section className="w-full bg-slate-50 dark:from-[#1f1b2e] dark:via-[#1b2430] dark:to-[#0f172a]">
+        <MeetHeroes className="w-11/12 mx-auto"></MeetHeroes>
       </section>
+
+      
 
       
     </div>
