@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import pawBuddy from "../assets/pawbuddy.png";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import { signOut } from "firebase/auth";
@@ -15,9 +14,7 @@ const NavBar = () => {
 
   return (
     <div>
-      <div className="flex justify-center items-center py-5 bg-gradient-to-r from-pink-200 via-yellow-200 to-blue-200">
-        <img src={pawBuddy} alt="" height="130" width="130" />
-      </div>
+      
       <div
         className="navbar shadow-sm bg-gradient-to-r from-pink-100 via-yellow-100 to-blue-100
 

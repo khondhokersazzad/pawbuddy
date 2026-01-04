@@ -20,6 +20,8 @@ const UpdateListing = () => {
 
   console.log(services);
 
+  
+
   const handleUpdateListing = (e) => {
     e.preventDefault();
     const name = e.target.productName.value;

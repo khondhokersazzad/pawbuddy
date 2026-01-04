@@ -1,4 +1,6 @@
 import React from "react";
+import pawBuddy from "../assets/pawbuddy.png";
+
 
 const Footer = () => {
   return (
@@ -7,13 +9,9 @@ const Footer = () => {
       <footer className="mt-16 bg-gradient-to-br from-orange-100 via-amber-100 to-rose-100 rounded-t-3xl shadow-xl border-t-4 border-orange-300">
         <div className="max-w-5xl mx-auto px-6 py-10 text-center space-y-5">
           
-          <h3 className="text-2xl font-extrabold text-orange-700">
-            PawBuddy
-          </h3>
-
-          <p className="text-sm text-orange-900/80 max-w-md mx-auto">
-            Caring paws, happy hearts — your trusted pet companion hub.
-          </p>
+          <div className="flex justify-center items-center py-5 ">
+        <img src={pawBuddy} alt="" height="130" width="130" />
+      </div>
 
           {/* Links */}
           <div className="flex flex-wrap justify-center gap-6 mt-6 text-sm font-semibold">
