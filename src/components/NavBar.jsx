@@ -9,18 +9,15 @@ const NavBar = () => {
 
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
-
   useEffect(() => {
     const html = document.querySelector("html");
     html.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-
   const handleTheme = (checked) => {
     setTheme(checked ? "dark" : "light");
   };
-
 
   const handleLogout = () => {
     signOut(auth);
@@ -28,12 +25,13 @@ const NavBar = () => {
   };
 
   return (
-    <div className="
+    <div
+      className="
   bg-gradient-to-r
   from-pink-100 via-yellow-100 to-blue-100
   dark:from-[#1f1b2e] dark:via-[#1b2430] dark:to-[#0f172a]
-">
-
+"
+    >
       <div
         className="max-w-[1280px] mx-auto navbar shadow-sm 
 
@@ -151,7 +149,14 @@ const NavBar = () => {
 
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-white/80 backdrop-blur-md rounded-box mt-3 w-52 p-2 shadow-lg"
+              className="
+  menu menu-sm dropdown-content
+  mt-3 w-52 p-2 rounded-box shadow-lg
+  bg-white/80 backdrop-blur-md
+  dark:bg-slate-900/80
+  text-slate-800 dark:text-slate-200
+  border border-slate-200 dark:border-slate-700
+"
             >
               <li>
                 <NavLink
@@ -172,6 +177,17 @@ const NavBar = () => {
                 >
                   Pets & Supplies Page
                 </NavLink>
+              </li>
+
+              <li>
+                <div className="px-3">
+                  <input
+                    onChange={(e) => handleTheme(e.target.checked)}
+                    type="checkbox"
+                    defaultChecked={localStorage.getItem("theme") === "dark"}
+                    className="toggle"
+                  />
+                </div>
               </li>
               {user && (
                 <>
@@ -231,13 +247,13 @@ const NavBar = () => {
             </ul>
           </div>
 
-          <div>
+          <div className="px-3 hidden lg:block">
             <input
-           onChange={(e) => handleTheme(e.target.checked)}
-           type="checkbox"
-           defaultChecked={localStorage.getItem('theme') === "dark"}
-           className="toggle"/>
-
+              onChange={(e) => handleTheme(e.target.checked)}
+              type="checkbox"
+              defaultChecked={localStorage.getItem("theme") === "dark"}
+              className="toggle"
+            />
           </div>
 
           {user?.uid ? (
