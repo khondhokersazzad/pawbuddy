@@ -1,5 +1,15 @@
 import React from "react";
 import { Link } from "react-router";
+import {
+  Eye,
+  Heart,
+  MapPin,
+  Tag,
+  Star,
+  ArrowRight,
+  DollarSign,
+  Calendar,
+} from "lucide-react";
 
 const AllProductsCard = ({ pet }) => {
   const {
@@ -8,60 +18,143 @@ const AllProductsCard = ({ pet }) => {
     image,
     price,
     rating,
-    // availableQuantity,
     category,
+    location,
+    description,
+    date,
   } = pet;
 
+  // Determine if it's a pet (free) or product (paid)
+  const isPet = price === "0" || price === 0;
+  const displayPrice = isPet ? "Free Adoption" : `৳${price}`;
+
   return (
-    <div>
-      <div>
-        <div
-          className="
-      rounded-2xl overflow-hidden border transition-all duration-300
-      bg-gradient-to-br
-      from-pink-50 via-yellow-50 to-blue-50
-      dark:from-slate-900 dark:via-slate-800 dark:to-slate-900
-      border-pink-100 dark:border-slate-700
-      shadow-md hover:shadow-xl dark:shadow-black/30
-    "
-        >
-          {/* Toy Image */}
-          <img src={image} alt={name} className="w-full h-48 object-cover" />
+    <div className="group relative">
+      <div className="relative rounded-2xl overflow-hidden bg-white dark:bg-slate-800 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-orange-100 dark:border-slate-700">
+        {/* Image Container with Overlay */}
+        <div className="relative overflow-hidden">
+          <img
+            src={image || "https://via.placeholder.com/300x200"}
+            alt={name}
+            className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+            onError={(e) => {
+              e.currentTarget.src =
+                "https://via.placeholder.com/300x200?text=No+Image";
+            }}
+          />
 
-          <div className="p-4 space-y-2">
-            <h3 className="text-xl font-bold text-purple-700 dark:text-purple-300">
-              {name}
-            </h3>
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-            <p className="text-sm font-medium text-rose-500 dark:text-rose-300">
-              Category: {category}
-            </p>
-
-            <div className="flex justify-between items-center text-sm mt-2">
-              <p className="font-semibold text-blue-600 dark:text-blue-300">
-                Price: <span className="font-bold">${price}</span>
-              </p>
-
-              <p className="font-semibold text-lg text-yellow-600 dark:text-yellow-400">
-                ⭐ {rating}
-              </p>
+          {/* Category Badge */}
+          <div className="absolute top-3 left-3">
+            <div className="flex items-center gap-1 px-3 py-1 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-full text-xs font-medium text-orange-700 dark:text-orange-300">
+              <Tag size={12} />
+              {category}
             </div>
+          </div>
 
-            {/* View More Button */}
+          {/* Price Badge */}
+          <div className="absolute top-3 right-3">
+            <div
+              className={`flex items-center gap-1 px-3 py-1 backdrop-blur-sm rounded-full text-xs font-bold ${
+                isPet
+                  ? "bg-green-500/90 text-white"
+                  : "bg-orange-500/90 text-white"
+              }`}
+            >
+              {isPet ? <Heart size={12} /> : <DollarSign size={12} />}
+              {displayPrice}
+            </div>
+          </div>
+
+          {/* Hover Actions */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <Link
               to={`/details/${_id}`}
-              className="
-          block text-center mt-3 py-2 rounded-full font-semibold
-          bg-purple-500 hover:bg-purple-600
-          dark:bg-purple-600 dark:hover:bg-purple-500
-          text-white shadow-md hover:shadow-lg
-          transition-all
-        "
+              className="flex items-center gap-2 px-6 py-3 bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm rounded-full font-semibold text-orange-700 dark:text-orange-300 hover:bg-orange-500 hover:text-white transition-all duration-200 shadow-lg"
             >
-              🎈 View More
+              <Eye size={16} />
+              View Details
+              <ArrowRight size={16} />
             </Link>
           </div>
         </div>
+
+        {/* Content */}
+        <div className="p-5 space-y-3">
+          {/* Title */}
+          <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 line-clamp-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-200">
+            {name}
+          </h3>
+
+          {/* Description */}
+          {description && (
+            <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+              {description}
+            </p>
+          )}
+
+          {/* Meta Information */}
+          <div className="space-y-2">
+            {/* Location & Rating Row */}
+            <div className="flex items-center justify-between text-sm">
+              {location && (
+                <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
+                  <MapPin size={14} />
+                  <span className="truncate">{location}</span>
+                </div>
+              )}
+
+              {rating && (
+                <div className="flex items-center gap-1 text-yellow-500">
+                  <Star size={14} fill="currentColor" />
+                  <span className="font-medium">{rating}</span>
+                </div>
+              )}
+            </div>
+
+            {/* Date Row */}
+            {date && (
+              <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
+                <Calendar size={12} />
+                <span>
+                  Available from: {new Date(date).toLocaleDateString()}
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Action Button */}
+          <Link
+            to={`/details/${_id}`}
+            className={`block text-center py-3 rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 ${
+              isPet
+                ? "bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white shadow-lg hover:shadow-xl"
+                : "bg-gradient-to-r from-orange-500 to-rose-500 hover:from-orange-600 hover:to-rose-600 text-white shadow-lg hover:shadow-xl"
+            }`}
+          >
+            <div className="flex items-center justify-center gap-2">
+              {isPet ? (
+                <>
+                  <Heart size={16} />
+                  Adopt Now
+                </>
+              ) : (
+                <>
+                  <Eye size={16} />
+                  View Product
+                </>
+              )}
+            </div>
+          </Link>
+        </div>
+
+        {/* Decorative Elements */}
+        <div className="absolute -top-2 -right-2 w-20 h-20 bg-gradient-to-br from-orange-200/20 to-rose-200/20 dark:from-orange-800/20 dark:to-rose-800/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+        {/* Corner Accent */}
+        <div className="absolute bottom-0 left-0 w-0 h-0 border-l-[20px] border-l-transparent border-b-[20px] border-b-orange-500/20 dark:border-b-orange-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
     </div>
   );

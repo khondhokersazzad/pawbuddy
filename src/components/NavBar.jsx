@@ -7,6 +7,8 @@ import auth from "../firebase/firebase.config";
 const NavBar = () => {
   const { user, setUser } = useContext(AuthContext);
 
+  const [open, setOpen] = useState(false);
+
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   useEffect(() => {
@@ -256,7 +258,7 @@ const NavBar = () => {
             />
           </div>
 
-          {user?.uid ? (
+          {/* {user?.uid ? (
             <div>
               <div className="avatar mr-3" title={user?.displayName}>
                 <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring-2 ring-offset-2">
@@ -267,6 +269,61 @@ const NavBar = () => {
               <button onClick={handleLogout} className="btn">
                 Logout
               </button>
+            </div>
+          ) : (
+            <Link className="btn" to="/auth/login">
+              Login
+            </Link>
+          )} */}
+
+          {user?.uid ? (
+            <div className="relative mr-5">
+              <button
+                className="avatar cursor-pointer"
+                onClick={() => setOpen(!open)}
+              >
+                <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring-2 ring-offset-2">
+                  <img src={user?.photoURL} alt="avatar" />
+                </div>
+              </button>
+
+              {/* DropDown  */}
+              {open && (
+                <div className="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-gray-200 dark:border-slate-600 z-50 overflow-hidden">
+                  <Link
+                    to="/dashboard"
+                    className="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-200 border-b border-gray-100 dark:border-slate-600"
+                    onClick={() => setOpen(false)}
+                  >
+                    <span className="flex items-center gap-2">
+                      <span className="text-lg">📊</span>
+                      Dashboard
+                    </span>
+                  </Link>
+
+                  <NavLink
+                    className="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-200 border-b border-gray-100 dark:border-slate-600"
+                    to="/profile"
+                    onClick={() => setOpen(false)}
+                  >
+                    <span className="flex items-center gap-2">
+                      <span className="text-lg">👤</span>
+                      My Profile
+                    </span>
+                  </NavLink>
+
+                  <button
+                    onClick={() => {
+                      handleLogout();
+                      setOpen(false);
+                    }}
+                    className="w-full text-left px-4 py-3 text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors duration-200 flex items-center gap-2"
+                  >
+                    <span className="text-lg">🚪</span>
+                    Logout
+                  </button>
+                </div>
+              )}
             </div>
           ) : (
             <Link className="btn" to="/auth/login">

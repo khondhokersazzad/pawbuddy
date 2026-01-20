@@ -5,7 +5,7 @@ const PopularProducts = () => {
   const [pets, setPets] = useState([]);
 
   useEffect(() => {
-    fetch(`https://pawbuddy-five.vercel.app/services`)
+    fetch(`https://pawbuddy-five.vercel.app/services?limit=6`)
       .then((res) => res.json())
       .then((data) => {
         setPets(data);

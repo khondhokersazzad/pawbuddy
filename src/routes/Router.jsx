@@ -15,6 +15,7 @@ import MyListing from "../pages/MyListing";
 import UpdateListing from "../pages/UpdateListing";
 import MyOrders from "../pages/MyOrders";
 import Category from "../pages/Category";
+import Dashboard from "../pages/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,15 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+
+      {
+        path: "/dashboard",
+        element: (
+          <PrivateRoute>
+            <Dashboard></Dashboard>
+          </PrivateRoute>
+        ),
       },
 
       {
